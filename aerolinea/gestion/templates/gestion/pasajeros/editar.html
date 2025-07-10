@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Pasajero - AeroLine{% endblock %}
+
+{% block header_title %}Editar Pasajero{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h5 class="mb-0"><i class="fas fa-user-edit me-2"></i>Editar Pasajero: {{ pasajero.nombre }}</h5>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="{% url 'gestion:pasajeros_listar' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver al Listado
+                </a>
+                <a href="{% url 'gestion:pasajeros_detalle' pasajero.id %}" class="btn btn-info">
+                    <i class="fas fa-eye me-2"></i>Ver Detalles
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Los campos marcados con <span class="text-danger">*</span> son obligatorios.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="nombre" class="form-label">Nombre Completo <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ data.nombre|default:pasajero.nombre }}" required>
+                        <div class="invalid-feedback">
+                            Por favor ingrese el nombre completo.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ data.email|default:pasajero.email }}" required>
+                        <div class="invalid-feedback">
+                            Por favor ingrese un email válido.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono" name="telefono" value="{{ data.telefono|default:pasajero.telefono|default:'' }}">
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="tipo_documento" class="form-label">Tipo de Documento</label>
+                        <select class="form-select" id="tipo_documento" name="tipo_documento">
+                            <option value="" {% if not pasajero.tipo_documento and not data.tipo_documento %}selected{% endif %}>Seleccionar...</option>
+                            <option value="DNI" {% if data.tipo_documento == 'DNI' or pasajero.tipo_documento == 'DNI' %}selected{% endif %}>DNI</option>
+                            <option value="Pasaporte" {% if data.tipo_documento == 'Pasaporte' or pasajero.tipo_documento == 'Pasaporte' %}selected{% endif %}>Pasaporte</option>
+                            <option value="Cédula de Identidad" {% if data.tipo_documento == 'Cédula de Identidad' or pasajero.tipo_documento == 'Cédula de Identidad' %}selected{% endif %}>Cédula de Identidad</option>
+                            <option value="Otro" {% if data.tipo_documento == 'Otro' or pasajero.tipo_documento == 'Otro' %}selected{% endif %}>Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="documento" class="form-label">Número de Documento <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="documento" name="documento" value="{{ data.documento|default:pasajero.documento }}" required>
+                        <div class="invalid-feedback">
+                            Por favor ingrese el número de documento.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ data.fecha_nacimiento|default:pasajero.fecha_nacimiento|date:'Y-m-d'|default:'' }}">
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="row">
+                <div class="col-md-12 text-end">
+                    <button type="reset" class="btn btn-secondary">
+                        <i class="fas fa-undo me-2"></i>Restaurar Valores
+                    </button>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-save me-2"></i>Actualizar Pasajero
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Validación de formulario Bootstrap
+    document.addEventListener('DOMContentLoaded', function() {
+        const forms = document.querySelectorAll('.needs-validation');
+        
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                
+                form.classList.add('was-validated');
+            }, false);
+        });
+    });
+</script>
+{% endblock %}

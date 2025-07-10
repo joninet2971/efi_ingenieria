@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Pasajero - AeroLine{% endblock %}
+
+{% block header_title %}Eliminar Pasajero{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-danger text-white">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación</h5>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="{% url 'gestion:pasajeros_listar' %}" class="btn btn-light">
+                    <i class="fas fa-arrow-left me-2"></i>Volver al Listado
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <strong>¡Advertencia!</strong> Esta acción no se puede deshacer. Se eliminarán todos los datos relacionados con este pasajero.
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h5>¿Estás seguro de que deseas eliminar el siguiente pasajero?</h5>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h6 class="mb-0">Información del Pasajero</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered mb-0">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 30%">ID</th>
+                                    <td>{{ pasajero.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <td>{{ pasajero.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Documento</th>
+                                    <td>{{ pasajero.documento }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ pasajero.email }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <form method="post" class="text-center">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="{% url 'gestion:pasajeros_detalle' pasajero.id %}" class="btn btn-secondary me-md-2">
+                            <i class="fas fa-times me-2"></i>Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash me-2"></i>Confirmar Eliminación
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

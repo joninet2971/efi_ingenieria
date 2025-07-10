@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+
+{% block title %}Panel de Control - AeroLine{% endblock %}
+
+{% block header_title %}Panel de Control{% endblock %}
+
+{% block content %}
+<!-- Dashboard Stats -->
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="dashboard-stat position-relative stat-primary">
+            <div class="dashboard-stat-content">
+                <h4>120</h4>
+                <p>Vuelos Activos</p>
+            </div>
+            <i class="fas fa-plane-departure dashboard-stat-icon"></i>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="dashboard-stat position-relative stat-success">
+            <div class="dashboard-stat-content">
+                <h4>1,850</h4>
+                <p>Reservas</p>
+            </div>
+            <i class="fas fa-ticket-alt dashboard-stat-icon"></i>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="dashboard-stat position-relative stat-warning">
+            <div class="dashboard-stat-content">
+                <h4>532</h4>
+                <p>Pasajeros</p>
+            </div>
+            <i class="fas fa-users dashboard-stat-icon"></i>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="dashboard-stat position-relative stat-danger">
+            <div class="dashboard-stat-content">
+                <h4>15</h4>
+                <p>Aviones</p>
+            </div>
+            <i class="fas fa-plane dashboard-stat-icon"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Actions Cards -->
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-tasks me-2"></i>Acciones Rápidas</span>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <a href="#" class="btn btn-primary w-100 py-3">
+                            <i class="fas fa-plus-circle me-2"></i>Nueva Reserva
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="#" class="btn btn-success w-100 py-3">
+                            <i class="fas fa-plane me-2"></i>Registrar Vuelo
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="#" class="btn btn-warning w-100 py-3">
+                            <i class="fas fa-user-plus me-2"></i>Nuevo Pasajero
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="#" class="btn btn-info w-100 py-3">
+                            <i class="fas fa-print me-2"></i>Generar Reporte
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-chart-line me-2"></i>Resumen del Sistema</span>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Ocupación de Vuelos</label>
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Reservas Confirmadas</label>
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Disponibilidad de Asientos</label>
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">Vuelos Retrasados</label>
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 12%;" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100">12%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity & Upcoming Flights -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="table-container">
+            <h5 class="mb-3"><i class="fas fa-history me-2"></i>Actividad Reciente</h5>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Acción</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><span class="badge bg-success">Nueva Reserva</span></td>
+                        <td>admin</td>
+                        <td>2025-07-09 18:25</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><span class="badge bg-primary">Check-in</span></td>
+                        <td>operador1</td>
+                        <td>2025-07-09 17:43</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><span class="badge bg-warning">Cambio Asiento</span></td>
+                        <td>operador2</td>
+                        <td>2025-07-09 16:30</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><span class="badge bg-danger">Cancelación</span></td>
+                        <td>admin</td>
+                        <td>2025-07-09 15:15</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><span class="badge bg-info">Actualización</span></td>
+                        <td>operador3</td>
+                        <td>2025-07-09 14:22</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="table-container">
+            <h5 class="mb-3"><i class="fas fa-plane-departure me-2"></i>Próximos Vuelos</h5>
+            <table class="table table-hover datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">Vuelo</th>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Destino</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AL127</td>
+                        <td>Buenos Aires</td>
+                        <td>Madrid</td>
+                        <td>2025-07-10 08:30</td>
+                        <td><span class="badge bg-success">A tiempo</span></td>
+                    </tr>
+                    <tr>
+                        <td>AL315</td>
+                        <td>Buenos Aires</td>
+                        <td>Santiago</td>
+                        <td>2025-07-10 09:15</td>
+                        <td><span class="badge bg-success">A tiempo</span></td>
+                    </tr>
+                    <tr>
+                        <td>AL452</td>
+                        <td>Córdoba</td>
+                        <td>Lima</td>
+                        <td>2025-07-10 10:45</td>
+                        <td><span class="badge bg-warning">Demorado</span></td>
+                    </tr>
+                    <tr>
+                        <td>AL189</td>
+                        <td>Buenos Aires</td>
+                        <td>Mendoza</td>
+                        <td>2025-07-10 11:30</td>
+                        <td><span class="badge bg-success">A tiempo</span></td>
+                    </tr>
+                    <tr>
+                        <td>AL264</td>
+                        <td>Mendoza</td>
+                        <td>Iguazú</td>
+                        <td>2025-07-10 14:20</td>
+                        <td><span class="badge bg-warning">Demorado</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles del Pasajero - AeroLine{% endblock %}
+
+{% block header_title %}Detalles del Pasajero{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h5 class="mb-0"><i class="fas fa-user me-2"></i>{{ pasajero.nombre }}</h5>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="{% url 'gestion:pasajeros_listar' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver al Listado
+                </a>
+                <a href="{% url 'gestion:pasajeros_editar' pasajero.id %}" class="btn btn-warning">
+                    <i class="fas fa-edit me-2"></i>Editar
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th style="width: 30%">ID</th>
+                            <td>{{ pasajero.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre Completo</th>
+                            <td>{{ pasajero.nombre }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tipo de Documento</th>
+                            <td>{{ pasajero.tipo_documento|default:"No especificado" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Número de Documento</th>
+                            <td>{{ pasajero.documento }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>
+                                <a href="mailto:{{ pasajero.email }}">{{ pasajero.email }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Teléfono</th>
+                            <td>
+                                {% if pasajero.telefono %}
+                                <a href="tel:{{ pasajero.telefono }}">{{ pasajero.telefono }}</a>
+                                {% else %}
+                                No especificado
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Fecha de Nacimiento</th>
+                            <td>
+                                {% if pasajero.fecha_nacimiento %}
+                                {{ pasajero.fecha_nacimiento|date:"d/m/Y" }}
+                                {% else %}
+                                No especificada
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h6 class="mb-0">Información Adicional</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <div class="avatar-circle">
+                                <span class="avatar-initials">{{ pasajero.nombre|first|upper }}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Aquí podrían ir estadísticas o información adicional del pasajero -->
+                        <h6>Reservas Realizadas</h6>
+                        <p><!-- Información a cargar dinámicamente --></p>
+                        
+                        <h6>Último Vuelo</h6>
+                        <p><!-- Información a cargar dinámicamente --></p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h6 class="mb-0">Acciones</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class="fas fa-ticket-alt me-2"></i>Ver Reservas
+                            </a>
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fas fa-plus-circle me-2"></i>Nueva Reserva
+                            </a>
+                            <a href="{% url 'gestion:pasajeros_eliminar' pasajero.id %}" class="btn btn-outline-danger">
+                                <i class="fas fa-trash me-2"></i>Eliminar Pasajero
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .avatar-circle {
+        width: 100px;
+        height: 100px;
+        background-color: var(--bs-primary);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+    
+    .avatar-initials {
+        color: white;
+        font-size: 42px;
+        font-weight: bold;
+        line-height: 1;
+    }
+</style>
+{% endblock %}
