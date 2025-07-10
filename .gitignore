@@ -1,6 +1,8 @@
 .enviroment
 enviroment/
 .enviroment/
+.venv
+venv/
 */__pycache__
 */.pyc
 */.pyo
